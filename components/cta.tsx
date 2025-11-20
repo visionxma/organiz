@@ -2,11 +2,12 @@
 
 import { Button } from "@/components/ui/button"
 import { ArrowRight } from "lucide-react"
+import { CONTACT } from "@/lib/constants"
 
 export function CTA() {
   const handleWhatsApp = () => {
     const message = "Olá! Gostaria de conhecer melhor o ORGANIZ."
-    const whatsappUrl = `https://wa.me/5599984680391?text=${encodeURIComponent(message)}`
+    const whatsappUrl = CONTACT.getWhatsAppUrl(message)
     window.open(whatsappUrl, "_blank")
   }
 

@@ -3,17 +3,8 @@
 import { useEffect, useState } from "react"
 import { Button } from "@/components/ui/button"
 import { ArrowRight } from "lucide-react"
-
-const professions = [
-  "Editores de Vídeo",
-  "Designers",
-  "Gestores de Tráfego",
-  "Advogados",
-  "Serviços Gráficos",
-  "Fotógrafos",
-  "Consultores",
-  "Arquitetos",
-]
+import { PROFESSIONS } from "@/lib/constants"
+import { StatCard } from "@/components/shared/stat-card"
 
 export function Hero() {
   const [currentProfession, setCurrentProfession] = useState(0)
@@ -23,7 +14,7 @@ export function Hero() {
     const interval = setInterval(() => {
       setIsAnimating(true)
       setTimeout(() => {
-        setCurrentProfession((prev) => (prev + 1) % professions.length)
+        setCurrentProfession((prev) => (prev + 1) % PROFESSIONS.length)
         setIsAnimating(false)
       }, 300)
     }, 3000)
@@ -52,7 +43,7 @@ export function Hero() {
                   isAnimating ? "opacity-0 translate-y-4" : "opacity-100 translate-y-0"
                 }`}
               >
-                {professions[currentProfession]}
+                {PROFESSIONS[currentProfession]}
               </span>
             </span>
           </h1>
@@ -83,20 +74,10 @@ export function Hero() {
             </Button>
           </div>
 
-          {/* Stats */}
           <div className="grid grid-cols-3 gap-8 pt-16 max-w-3xl mx-auto">
-            <div className="glass-card rounded-2xl p-6">
-              <div className="text-3xl md:text-4xl font-bold text-primary mb-2">100%</div>
-              <div className="text-sm text-muted-foreground">Online</div>
-            </div>
-            <div className="glass-card rounded-2xl p-6">
-              <div className="text-3xl md:text-4xl font-bold text-primary mb-2">24/7</div>
-              <div className="text-sm text-muted-foreground">Acesso</div>
-            </div>
-            <div className="glass-card rounded-2xl p-6">
-              <div className="text-3xl md:text-4xl font-bold text-primary mb-2">R$29</div>
-              <div className="text-sm text-muted-foreground">Por mês</div>
-            </div>
+            <StatCard value="100%" label="Online" />
+            <StatCard value="24/7" label="Acesso" />
+            <StatCard value="R$29" label="Por mês" />
           </div>
         </div>
       </div>
